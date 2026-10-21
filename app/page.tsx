@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import { SlaBadge } from '@/components/SiteChrome';
-import { COMPANY_STATS, REQUISITIONS, SLAS } from '@/lib/site-data';
+import Link from "next/link";
+import { SlaBadge } from "@/components/SiteChrome";
+import { COMPANY_STATS, REQUISITIONS, SLAS } from "@/lib/site-data";
 
 export default function Home() {
   const open = REQUISITIONS.length;
-  const breached = REQUISITIONS.filter((r) => r.slaState === 'breached').length;
+  const breached = REQUISITIONS.filter((r) => r.slaState === "breached").length;
 
   return (
     <>
@@ -19,9 +19,12 @@ export default function Home() {
             Every requisition, measured against the clock.
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-body">
-            We publish our service levels and our performance against them, including
-            the ones we are missing. {open} requisitions are open right now and{' '}
-            {breached === 0 ? 'none are' : `${breached} ${breached === 1 ? 'is' : 'are'}`}{' '}
+            We publish our service levels and our performance against them,
+            including the ones we are missing. {open} requisitions are open
+            right now and{" "}
+            {breached === 0
+              ? "none are"
+              : `${breached} ${breached === 1 ? "is" : "are"}`}{" "}
             past the agreed time to fill.
           </p>
 
@@ -48,7 +51,10 @@ export default function Home() {
           <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-ink">
             Where we stand today
           </h2>
-          <Link href="/slas" className="text-sm text-brand no-underline hover:underline">
+          <Link
+            href="/slas"
+            className="text-sm text-brand no-underline hover:underline"
+          >
             All service levels →
           </Link>
         </div>
@@ -62,7 +68,9 @@ export default function Home() {
               <span className="font-[family-name:var(--font-geist-mono)] text-xs text-muted">
                 {sla.code}
               </span>
-              <span className="min-w-[14rem] flex-1 text-sm text-ink">{sla.name}</span>
+              <span className="min-w-[14rem] flex-1 text-sm text-ink">
+                {sla.name}
+              </span>
               <span className="font-[family-name:var(--font-geist-mono)] text-xs text-muted">
                 target {sla.target}
               </span>
@@ -84,7 +92,9 @@ export default function Home() {
                 <dt className="font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight text-ink">
                   {stat.figure}
                 </dt>
-                <dd className="mt-2 text-sm leading-relaxed text-body">{stat.label}</dd>
+                <dd className="mt-2 text-sm leading-relaxed text-body">
+                  {stat.label}
+                </dd>
               </div>
             ))}
           </dl>
@@ -97,7 +107,10 @@ export default function Home() {
           <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-ink">
             Recently opened
           </h2>
-          <Link href="/requisitions" className="text-sm text-brand no-underline hover:underline">
+          <Link
+            href="/requisitions"
+            className="text-sm text-brand no-underline hover:underline"
+          >
             All requisitions →
           </Link>
         </div>
@@ -115,7 +128,9 @@ export default function Home() {
                 <p className="font-[family-name:var(--font-geist-mono)] text-xs text-muted">
                   {req.ref}
                 </p>
-                <h3 className="mt-2 text-base font-medium text-ink">{req.title}</h3>
+                <h3 className="mt-2 text-base font-medium text-ink">
+                  {req.title}
+                </h3>
                 <p className="mt-1 text-sm text-body">{req.location}</p>
                 <p className="mt-4 font-[family-name:var(--font-geist-mono)] text-xs text-muted">
                   Open {req.daysOpen} days

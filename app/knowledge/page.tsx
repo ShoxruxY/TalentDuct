@@ -1,15 +1,16 @@
-import type { Metadata } from 'next';
-import { PageHeader } from '@/components/SiteChrome';
-import { ARTICLES } from '@/lib/site-data';
+import type { Metadata } from "next";
+import { PageHeader } from "@/components/SiteChrome";
+import { ARTICLES } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: 'Knowledge Article | TalentDuct Recruitment',
-  description: 'Guidance for candidates and clients on how our recruitment process works.',
+  title: "Knowledge Article | TalentDuct Recruitment",
+  description:
+    "Guidance for candidates and clients on how our recruitment process works.",
 };
 
 export default function KnowledgePage() {
-  const forCandidates = ARTICLES.filter((a) => a.category === 'For candidates');
-  const forClients = ARTICLES.filter((a) => a.category === 'For clients');
+  const forCandidates = ARTICLES.filter((a) => a.category === "For candidates");
+  const forClients = ARTICLES.filter((a) => a.category === "For clients");
 
   return (
     <>
@@ -21,8 +22,8 @@ export default function KnowledgePage() {
 
       <div className="mx-auto max-w-6xl px-6 py-16">
         {[
-          { heading: 'For candidates', items: forCandidates },
-          { heading: 'For clients', items: forClients },
+          { heading: "For candidates", items: forCandidates },
+          { heading: "For clients", items: forClients },
         ].map((group) => (
           <section key={group.heading} className="mb-16 last:mb-0">
             <h2 className="font-[family-name:var(--font-geist-mono)] text-[11px] uppercase tracking-[0.18em] text-muted">
@@ -41,7 +42,9 @@ export default function KnowledgePage() {
                     </span>
                   </div>
 
-                  <p className="mt-3 max-w-2xl leading-relaxed text-body">{article.summary}</p>
+                  <p className="mt-3 max-w-2xl leading-relaxed text-body">
+                    {article.summary}
+                  </p>
 
                   <div className="mt-6 max-w-2xl space-y-4 border-t border-line pt-6">
                     {article.body.map((para, i) => (

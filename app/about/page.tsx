@@ -1,32 +1,32 @@
-import type { Metadata } from 'next';
-import { PageHeader } from '@/components/SiteChrome';
-import { COMPANY_STATS, OFFICES } from '@/lib/site-data';
+import type { Metadata } from "next";
+import { PageHeader } from "@/components/SiteChrome";
+import { COMPANY_STATS, OFFICES } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: 'About Us | TalentDuct Recruitment',
-  description: 'Who TalentDuct is, how we work, and where we are.',
+  title: "About Us | TalentDuct Recruitment",
+  description: "Who TalentDuct is, how we work, and where we are.",
 };
 
 const PRINCIPLES = [
   {
-    title: 'Publish the misses',
+    title: "Publish the misses",
     detail:
-      'Our SLA page shows commitments we are currently failing, not just the ones we are meeting. A service level nobody can audit is marketing.',
+      "Our SLA page shows commitments we are currently failing, not just the ones we are meeting. A service level nobody can audit is marketing.",
   },
   {
-    title: 'Never send a resume blind',
+    title: "Never send a resume blind",
     detail:
-      'Candidates see the summary we write about them and know which client it is going to, before it goes.',
+      "Candidates see the summary we write about them and know which client it is going to, before it goes.",
   },
   {
-    title: 'Feedback to everyone who interviews',
+    title: "Feedback to everyone who interviews",
     detail:
-      'Every candidate who reaches interview hears the outcome within 48 hours, successful or not. This is the SLA we most often miss and the one we work hardest on.',
+      "Every candidate who reaches interview hears the outcome within 48 hours, successful or not. This is the SLA we most often miss and the one we work hardest on.",
   },
   {
-    title: 'Salary discussed first',
+    title: "Salary discussed first",
     detail:
-      'We ask about money in the screening call. Leaving it to offer stage wastes the candidate time more than ours.',
+      "We ask about money in the screening call. Leaving it to offer stage wastes the candidate time more than ours.",
   },
 ];
 
@@ -46,18 +46,21 @@ export default function AboutPage() {
               How we work
             </h2>
             <p className="leading-relaxed text-body">
-              Most recruitment agencies compete on relationships and speed. We compete on being
-              measurable. Every requisition we take on carries an agreed time to fill, and every
-              stage of the process has a service level attached to it that the client can see.
+              Most recruitment agencies compete on relationships and speed. We
+              compete on being measurable. Every requisition we take on carries
+              an agreed time to fill, and every stage of the process has a
+              service level attached to it that the client can see.
             </p>
             <p className="leading-relaxed text-body">
-              That means we publish our failures. The SLA page on this site shows two commitments
-              we are currently missing. We would rather have that conversation up front than
-              explain it in a quarterly review.
+              That means we publish our failures. The SLA page on this site
+              shows two commitments we are currently missing. We would rather
+              have that conversation up front than explain it in a quarterly
+              review.
             </p>
             <p className="leading-relaxed text-body">
-              We work across three offices with a team of eighteen, deliberately small enough that
-              the consultant who takes your brief is the one who calls the candidates.
+              We work across three offices with a team of eighteen, deliberately
+              small enough that the consultant who takes your brief is the one
+              who calls the candidates.
             </p>
           </div>
 
@@ -67,7 +70,9 @@ export default function AboutPage() {
                 <dt className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-ink">
                   {stat.figure}
                 </dt>
-                <dd className="mt-1 text-xs leading-relaxed text-body">{stat.label}</dd>
+                <dd className="mt-1 text-xs leading-relaxed text-body">
+                  {stat.label}
+                </dd>
               </div>
             ))}
           </dl>
@@ -81,8 +86,12 @@ export default function AboutPage() {
           <div className="mt-8 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2">
             {PRINCIPLES.map((principle) => (
               <div key={principle.title} className="bg-card p-7">
-                <h3 className="text-base font-medium text-ink">{principle.title}</h3>
-                <p className="mt-2 leading-relaxed text-body">{principle.detail}</p>
+                <h3 className="text-base font-medium text-ink">
+                  {principle.title}
+                </h3>
+                <p className="mt-2 leading-relaxed text-body">
+                  {principle.detail}
+                </p>
               </div>
             ))}
           </div>
@@ -103,7 +112,7 @@ export default function AboutPage() {
                   {office.address}
                 </address>
                 <a
-                  href={`tel:${office.phone.replace(/\s/g, '')}`}
+                  href={`tel:${office.phone.replace(/\s/g, "")}`}
                   className="mt-2 inline-block font-[family-name:var(--font-geist-mono)] text-sm text-ink no-underline hover:underline"
                 >
                   {office.phone}
