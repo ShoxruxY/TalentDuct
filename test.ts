@@ -1,6 +1,6 @@
 // import { getSLAs } from "./lib/SLAs.ts";
-import { config } from "./lib/agent-config.ts";
-import { soql } from "./lib/salesforce-rest.ts";
+import { config } from "./lib1/agent-config.ts";
+import { soql } from "./lib1/salesforce-rest.ts";
 export const SF_API_VERSION = "v64.0";
 const SF_MY_DOMAIN_URL =
   "https://orgfarm-17938a289a-dev-ed.develop.my.salesforce.com";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/SiteChrome";
-import { COMPANY_STATS, OFFICES } from "@/lib/site-data";
+import { COMPANY_STATS, OFFICES } from "@/lib1/site-data";
 
 export const metadata: Metadata = {
   title: "About Us | TalentDuct Recruitment",
