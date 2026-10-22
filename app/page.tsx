@@ -1,8 +1,26 @@
 import Link from "next/link";
 import { SlaBadge } from "@/components/SiteChrome";
-import { COMPANY_STATS, REQUISITIONS, SLAS } from "@/lib/site-data";
+import { COMPANY_STATS, REQUISITIONS } from "@/lib/site-data";
+import {
+  getJobRequisitions,
+  getClosedRequisitionCount,
+} from "@/lib/Job-Requisitions";
 
-export default function Home() {
+function badgeState(
+  status: string | null | undefined,
+): "ontrack" | "atrisk" | "breached" {
+  const normalized = status
+    ?.trim()
+    .toLowerCase()
+    .replace(/[ _-]+/g, "");
+  if (normalized === "breached" || normalized === "missed") return "breached";
+  if (normalized === "atrisk") return "atrisk";
+  return "ontrack";
+}
+
+export default async function Home() {
+  const requisitions = await getJobRequisitions();
+  const closedPlacements = await getClosedRequisitionCount();
   const open = REQUISITIONS.length;
   const breached = REQUISITIONS.filter((r) => r.slaState === "breached").length;
 
@@ -60,24 +78,26 @@ export default function Home() {
         </div>
 
         <div className="tabular mt-8 divide-y divide-line overflow-hidden rounded-lg border border-line bg-card">
-          {SLAS.map((sla) => (
+          {requisitions.map((req) => (
             <div
-              key={sla.code}
+              key={req.Id}
               className="flex flex-wrap items-center gap-x-6 gap-y-2 px-5 py-4"
             >
               <span className="font-[family-name:var(--font-geist-mono)] text-xs text-muted">
-                {sla.code}
+                {req.SLA_ID__c}
               </span>
               <span className="min-w-[14rem] flex-1 text-sm text-ink">
-                {sla.name}
+                {req.Name}
               </span>
               <span className="font-[family-name:var(--font-geist-mono)] text-xs text-muted">
-                target {sla.target}
+                target {req.Time_To_Fill_Target_Minutes__c / 1440}
               </span>
               <span className="font-[family-name:var(--font-geist-mono)] text-xs text-ink">
-                actual {sla.actual}
+                actual {Math.round(req.Elapsed_Minutes__c / 1440)}
               </span>
-              <SlaBadge state={sla.state} />
+              <SlaBadge state={badgeState(req.SLA_Status__c)}>
+                {req.SLA_Status__c ?? "Unknown"}
+              </SlaBadge>
             </div>
           ))}
         </div>
@@ -116,24 +136,30 @@ export default function Home() {
         </div>
 
         <div className="mt-8 grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-3">
-          {[...REQUISITIONS]
-            .sort((a, b) => a.daysOpen - b.daysOpen)
+          {[...requisitions]
+            .sort(
+              (a, b) =>
+                Math.round(a.Elapsed_Minutes__c / 1440) -
+                Math.round(b.Elapsed_Minutes__c / 1440),
+            )
             .slice(0, 3)
             .map((req) => (
               <Link
-                key={req.ref}
+                key={req.SLA_ID__c}
                 href="/requisitions"
                 className="bg-card p-6 no-underline transition-colors hover:bg-wash"
               >
                 <p className="font-[family-name:var(--font-geist-mono)] text-xs text-muted">
-                  {req.ref}
+                  {req.Job_Requisition__r.Requisition_Number__c}
                 </p>
                 <h3 className="mt-2 text-base font-medium text-ink">
-                  {req.title}
+                  {req.Job_Requisition__r.Name}
                 </h3>
-                <p className="mt-1 text-sm text-body">{req.location}</p>
+                <p className="mt-1 text-sm text-body">
+                  {req.Job_Requisition__r.Location__c}
+                </p>
                 <p className="mt-4 font-[family-name:var(--font-geist-mono)] text-xs text-muted">
-                  Open {req.daysOpen} days
+                  Open {Math.round(req.Elapsed_Minutes__c / 1440)} days
                 </p>
               </Link>
             ))}

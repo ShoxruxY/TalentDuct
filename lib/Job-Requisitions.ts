@@ -58,6 +58,14 @@ export async function getJobRequisitions(): Promise<JobRequisitionRow[]> {
   );
 }
 
+export async function getClosedRequisitionCount(): Promise<number> {
+  const result = await soql<{ expr0: number }>(
+    "SELECT COUNT() FROM Job_Requisition__c WHERE Status__c = 'Closed'",
+  );
+
+  return result[0]?.expr0 ?? 0;
+}
+
 export async function getClientName(clientId: string): Promise<string | null> {
   if (!/^[a-zA-Z0-9]{15}(?:[a-zA-Z0-9]{3})?$/.test(clientId)) {
     return null;
