@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { SESSION_COOKIE } from "@/lib1/agent-config";
-import { sfFetch } from "@/lib1/sf-auth";
+import { SESSION_COOKIE } from "@/lib/agent-config";
+import { sfFetch } from "@/lib/sf-auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

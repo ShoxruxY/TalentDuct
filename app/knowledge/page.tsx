@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/SiteChrome";
-import { ARTICLES } from "@/lib1/site-data";
+import { ARTICLES } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Knowledge Article | TalentDuct Recruitment",

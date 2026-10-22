@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SlaBadge } from "@/components/SiteChrome";
-import { COMPANY_STATS, REQUISITIONS, SLAS } from "@/lib1/site-data";
+import { COMPANY_STATS, REQUISITIONS, SLAS } from "@/lib/site-data";
 
 export default function Home() {
   const open = REQUISITIONS.length;

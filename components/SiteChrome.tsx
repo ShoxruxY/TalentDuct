@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NAV, OFFICES, type SlaState } from "@/lib1/site-data";
+import { NAV, OFFICES, type SlaState } from "@/lib/site-data";
 
 const SLA_TONE: Record<SlaState, { dot: string; text: string; label: string }> =
   {

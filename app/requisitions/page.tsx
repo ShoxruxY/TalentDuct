@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader, SlaBadge } from "@/components/SiteChrome";
-import { getJobRequisitions, getClientMap } from "@/lib1/Job-Requisitions";
+import { getJobRequisitions, getClientMap } from "@/lib/Job-Requisitions";
 
 export const metadata: Metadata = {
   title: "Job Requisitions | TalentDuct Recruitment",

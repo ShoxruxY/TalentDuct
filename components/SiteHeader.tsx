@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { NAV } from "@/lib1/site-data";
+import { NAV } from "@/lib/site-data";
 
 export default function SiteHeader() {
   const pathname = usePathname();
